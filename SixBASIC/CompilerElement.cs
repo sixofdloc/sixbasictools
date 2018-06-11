@@ -43,7 +43,7 @@ namespace SixBASIC
         {
             Processed = new List<byte>();
         }
-        public string ToString()
+        public new string ToString()
         {
             return "<ElementType>" + CompilerElementTypes.TypeNames[ElementType] + "</ElementType><Original>" + Original + "</Original><Processed>" + Processed + "</Processed>";
         }
@@ -57,7 +57,7 @@ namespace SixBASIC
             set { }
         }
         public int Number_Of_Spaces { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<Number_Of_Spaces>" + Number_Of_Spaces.ToString() + "</Number_Of_Spaces>";
         }
@@ -71,7 +71,7 @@ namespace SixBASIC
             set { }
         }
         public MicrosoftBasic2Token Token { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<Token>" + Token.ASCII + "</Token>";
         }
@@ -87,7 +87,7 @@ namespace SixBASIC
         public int Program_Line { get; set; }
         public int Line_Number { get; set; }
         public string Label { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<Program_Line>" + Program_Line.ToString() + "</Program_Line>"
                 + "<Line_Number>" + Line_Number.ToString() + "</Line_Number>"
@@ -105,7 +105,7 @@ namespace SixBASIC
         public int Number { get; set; }
         public string Label { get; set; }
 
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() 
                 + "<Line_Number>" + Number.ToString() + "</Line_Number>"
@@ -122,7 +122,7 @@ namespace SixBASIC
             set { }
         }
         public string Character { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<Character>" + Character + "</Character>";
         }
@@ -137,7 +137,7 @@ namespace SixBASIC
             set { }
         }
         public string Text { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<Text>" + Text + "</Text>";
         }
@@ -153,7 +153,7 @@ namespace SixBASIC
         }
         public string VariableName { get; set; }
         public int VariableType { get; set; }
-        public string ToString()
+        public new string ToString()
         {
             return base.ToString() + "<VariableName>" + VariableName + "</VariableName>"
                 + "<VariableType>" + VariableType.ToString() + "</VariableType>";

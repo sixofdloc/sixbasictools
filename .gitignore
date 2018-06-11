@@ -1,0 +1,10 @@
+.vs/
+
+SixBASIC/bin
+SixBASIC/obj/
+bas2prg/obj/
+prg2bas/obj/
+list/obj/
+bas2prg/bin/
+list/bin/
+prg2bas/bin/

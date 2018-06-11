@@ -9,16 +9,17 @@ namespace bas2prg
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             try
             {
                 if (args.Length < 2)
                 {
-                    Console.WriteLine("prg2bas");
+                    Console.WriteLine("bas2prg");
                     Console.WriteLine("A commandline CBM Basic compiler.");
-                    Console.WriteLine("By Six/Style 2016");
-                    Console.WriteLine("usage: prg2bas basfile.bas prgfile.prg");
+                    Console.WriteLine("By Six/Style 2016-2018");
+                    Console.WriteLine("usage: bas2prg basfile.bas prgfile.prg");
                     Console.WriteLine();
                 }
                 else

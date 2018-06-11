@@ -119,7 +119,7 @@ namespace SixBASIC
                     Lines.Add(bl);
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 //Notify?
             }

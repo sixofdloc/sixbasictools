@@ -15,10 +15,10 @@ namespace prg2bas
             {
                 if (args.Length < 2)
                 {
-                    Console.WriteLine("bas2prg");
+                    Console.WriteLine("prg2bas");
                     Console.WriteLine("A commandline CBM Basic decompiler.");
                     Console.WriteLine("By Six/Style 2016");
-                    Console.WriteLine("usage: bas2prg prgfile.prg basfile.bas");
+					Console.WriteLine("usage: prg2bas prgfile.prg basfile.bas");
                     Console.WriteLine();
 
                 }

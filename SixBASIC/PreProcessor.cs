@@ -7,9 +7,15 @@ namespace SixBASIC
 {
     public class PreProcessor
     {
-        int Line_Number_Start = 1;
-        int Line_Number_Increment = 1;
-        bool renumber = false;
+		//TODO:Finish building out Renumbering system		
+		//TODO:Finish building out Renumbering system       
+        //foreach line
+        //Do any lines refer to it?
+        //If not, give it the next available line_number
+        //If other lines refer to it (GOTO, GO TO, THEN, GOSUB), update them
+		//        int Line_Number_Start = 1;
+		//        int Line_Number_Increment = 1;
+		//        bool renumber;
 
   
         
@@ -34,11 +40,13 @@ namespace SixBASIC
             s = processlines.FirstOrDefault(p => p.Contains("{renumber}"));
             if (s == null)
             {
-                renumber = false;
+				//TODO:Finish building out Renumbering system       
+ //               renumber = false;
             }
             else
             {
-                renumber = true;
+				//TODO:Finish building out Renumbering system       
+//                renumber = true;
                 processlines.Remove(s);
             }
 
@@ -85,8 +93,9 @@ namespace SixBASIC
                                 String qs = new String((char)q, 1);
                                 r = r.Replace(t.Substring(i, 5), qs);
                             }
-                            catch (Exception e)
+                            catch (Exception )
                             {
+								//TODO: Decide what to do with conversion errors       
                                 //Log?
                             }
                         }
@@ -104,11 +113,6 @@ namespace SixBASIC
 
         
 
-        //Renumbering - 
-        //foreach line
-        //Do any lines refer to it?
-        //If not, give it the next available line_number
-        //If other lines refer to it (GOTO, GO TO, THEN, GOSUB), update them
 
 
     }
