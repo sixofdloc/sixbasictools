@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -9,13 +10,11 @@ namespace SixBASIC
     {
         public string LastError { get; set; }
 
-        public int StartAddress { get; set; }
         public List<BASIC_Line> Lines { get; set; }
 
         public BASICProgram()
         {
             Lines = new List<BASIC_Line>();
-            StartAddress = 0x0801;
         }
 
         public bool AddLine(int line_number, string line_text)
@@ -76,48 +75,38 @@ namespace SixBASIC
 
         //Add a line by text, either with or without a line number.
         //If the line does not begin with a line number, it will use the next available.
-        public bool AddLineByText(string line_text)
+		public bool AddLineByText(string line_text, List<Label>labels, int sourceFileLine)
         {
             bool b = false;
             try
             {
-                BASIC_Line bl = new BASIC_Line();
-                string stripped_line = "";
-                string work_line = Utils.TrimLead(line_text);
-                if (Utils.IsNumber(work_line.Substring(0, 1)))
-                {
-                    string n = "";
-                    for (int i = 0; i < work_line.Length; i++)
-                    {
-                        if (Utils.IsNumber(work_line.Substring(i, 1)))
-                        {
-                            n = n + work_line.Substring(i, 1);
-                        }
-                        else
-                        {
-                            stripped_line = work_line.Substring(i, work_line.Length - i);
-                            break;
-                        }
-                    }
-                    bl.Line_Number = int.Parse(n);
-                    if (Lines.FirstOrDefault(p => p.Line_Number >= bl.Line_Number) == null)
-                    {
-                        bl.Text = stripped_line;
-                        Lines.Add(bl);
-                    }
-                    else
-                    {
-                        //Report Collision
-                        LastError = "Line Number collision or out of order: " + bl.Line_Number.ToString();
-                        b = false;
-                    }
-                }
-                else
-                {
-                    bl.Line_Number = Lines.Max(p => p.Line_Number) + 1;
-                    bl.Text = line_text;
-                    Lines.Add(bl);
-                }
+				BASIC_Line bl = new BASIC_Line(line_text,labels,sourceFileLine);
+				if (bl.Line_Number == -1)
+				{
+					try
+					{
+						bl.Line_Number = Lines.Max(p => p.Line_Number) + 1;
+					} catch (Exception){
+						bl.Line_Number = 1;
+					}
+					Lines.Add(bl);
+					b = true;
+				}
+				else
+				{
+					var line = Lines.FirstOrDefault(p => p.Line_Number >= bl.Line_Number);
+					if ( line == null)
+					{
+						Lines.Add(bl);
+						b = true;
+					}
+					else
+					{
+						//Report Collision
+						LastError = "Line Number collision or out of order: " + bl.Line_Number.ToString();
+						b = false;
+					}
+				}
             }
             catch (Exception )
             {
@@ -125,6 +114,39 @@ namespace SixBASIC
             }
             return b;
         }
+
+		public bool DoAnyLinesReferTo(BASIC_Line line)
+		{
+			var referenceFound = false;
+			if (line.Line_Number > -1)
+			{
+				referenceFound = (Lines.Count(l => l.RefersToLine(line.Line_Number)) > 0);
+			}
+			if (line.Labels.Count > 0)
+			{
+				foreach (var label in line.Labels)
+				{
+					if (Lines.Count(ln => ln.RefersToLabel(label.LabelName)) > 0)
+					{
+						referenceFound = true;
+						break;
+					}
+				}
+			}
+			return referenceFound;
+		}
+
+
+		public void Dump(string fileName){
+			using (StreamWriter writer = new StreamWriter(fileName))
+			{
+				foreach (var line in Lines)
+				{
+					writer.WriteLine(line.SourceFileLine + " |"+line.Line_Number.ToString()+"| : "+line.Text);
+				}
+
+			}            
+		}
 
 
     }

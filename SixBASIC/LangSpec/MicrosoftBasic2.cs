@@ -88,7 +88,7 @@ namespace SixBASIC
         };
 
         public static List<String> BranchingKeywords = new List<String>() { "GOSUB", "GOTO", "GO TO", "THEN" };
-        
 
+		public static List<String> SeparationChars = new List<string>() { " ", ":" };
     }
 }

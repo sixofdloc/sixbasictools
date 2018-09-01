@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -40,21 +39,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analyzer.cs" />
-    <Compile Include="BASIC.cs" />
-    <Compile Include="BASIC_Line.cs" />
-    <Compile Include="BASICProgram.cs" />
-    <Compile Include="CompilerElement.cs" />
-    <Compile Include="PreProcessor2.cs" />
-    <Compile Include="Detokenizer.cs" />
-    <Compile Include="MicrosoftBasic2Token.cs" />
-    <Compile Include="MicrosoftBasic2.cs" />
     <Compile Include="PETSCII.cs" />
-    <Compile Include="PreProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renumber.cs" />
-    <Compile Include="Tokenizer.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Enums\ElementType.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="LangSpec\BASIC_Line.cs" />
+    <Compile Include="LangSpec\BASICProgram.cs" />
+    <Compile Include="LangSpec\BasicStatement.cs" />
+    <Compile Include="LangSpec\MicrosoftBasic2.cs" />
+    <Compile Include="LangSpec\MicrosoftBasic2Token.cs" />
+    <Compile Include="Compiler\Tokenizer.cs" />
+    <Compile Include="LangSpec\Element.cs" />
+    <Compile Include="LangSpec\LineReference.cs" />
+    <Compile Include="Compiler\CompilerSettings.cs" />
+    <Compile Include="Compiler\Detokenizer.cs" />
+    <Compile Include="Compiler\PreProcessor.cs" />
+    <Compile Include="LangSpec\BASIC.cs" />
+    <Compile Include="Compiler\Analyzer.cs" />
+    <Compile Include="Compiler\CompilerElements\ReplacementMacro.cs" />
+    <Compile Include="Enums\VariableTypes.cs" />
+    <Compile Include="Enums\CompilerElementType.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Compiler\CompilerElements\Label.cs" />
+    <Compile Include="ProcessedLine.cs" />
+    <Compile Include="Compiler\CompilerElements\CompilerElement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="LangSpec\" />
+    <Folder Include="Compiler\" />
+    <Folder Include="Compiler\CompilerElements\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

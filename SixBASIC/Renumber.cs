@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SixBASIC.Enums;
+using SixBASIC.Compiler.CompilerElements;
+using SixBASIC.Compiler;
 
 namespace SixBASIC
 {
@@ -17,7 +20,7 @@ namespace SixBASIC
             foreach (CompilerElementRow row in Program)
             {
                 
-                if (row.Elements[0].ElementType != CompilerElementTypes.Position_Label)
+                if (row.Elements[0].ElementType != CompilerElementType.PositionLabel)
                 {
                     row.Elements.Insert(0, new Position_Label() { Line_Number = labelnum });
                 }
@@ -50,7 +53,7 @@ namespace SixBASIC
             {
                 foreach (CompilerElement element in row.Elements)
                 {
-                    if (element.ElementType == CompilerElementTypes.Line_Reference)
+                    if (element.ElementType == CompilerElementType.LineReference)
                     {
                         if (((Line_Reference)(element)).Label == label)
                         {
@@ -69,7 +72,7 @@ namespace SixBASIC
             {
                 foreach (CompilerElement element in row.Elements)
                 {
-                    if (element.ElementType == CompilerElementTypes.Line_Reference)
+                    if (element.ElementType == CompilerElementType.LineReference)
                     {
                         if (((Line_Reference)(element)).Number == oldlinenum)
                         {

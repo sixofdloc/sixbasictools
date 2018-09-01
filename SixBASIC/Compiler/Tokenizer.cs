@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SixBASIC
 {
-    public class Tokenizer
+    public static class Tokenizer
     {
-        public byte[] Tokenize(BASICProgram program)
+        public static byte[] Tokenize(BASICProgram program, ref CompilerSettings compilerSettings)
         {
-            int NextLineAddress = program.StartAddress;
+            int NextLineAddress = compilerSettings.BaseAddress;
             List<byte> output = new List<byte>();
             output.Add((byte)(NextLineAddress & 0x00ff));
             output.Add((byte)((NextLineAddress & 0xff00) >> 8));
@@ -21,10 +21,14 @@ namespace SixBASIC
                 output.Add((byte)((NextLineAddress & 0xff00) >> 8));
                 foreach (byte b in bytes) output.Add(b);
             }
+			//Pad end
+            output.Add(0x00);
+            output.Add(0x00);
+
             return output.ToArray();
         }
 
-        private List<byte> TokenizeLine(BASIC_Line line)
+        private static List<byte> TokenizeLine(BASIC_Line line)
         {
             //Needs to encode line number and trailing zero after tokenized basic
             List<byte> output = new List<byte>();
@@ -51,7 +55,7 @@ namespace SixBASIC
         }
 
 
-        private List<byte> TokenizeBlock(string s)
+        public static List<byte> TokenizeBlock(string s)
         {
             List<byte> bytes = new List<byte>();
             string t = s.Replace("\0", "");
@@ -115,7 +119,6 @@ namespace SixBASIC
                 }
                 if (t.Length == 0) done = true;
             }
-
             return bytes;
 
         }

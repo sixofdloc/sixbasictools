@@ -27,8 +27,9 @@ namespace bas2prg
                     BASIC basic = new BASIC();
                     PreProcessor pp = new PreProcessor();
                     List<string> basfile = File.ReadAllLines(args[0]).ToList();
-                    BASICProgram p = pp.PreProcess(basfile);
-                    byte[] bytes = basic.Tokenizer.Tokenize(p);
+					CompilerSettings compilerSettings = new CompilerSettings();
+                    BASICProgram p = pp.PreProcess(basfile,ref compilerSettings);
+                    byte[] bytes = Tokenizer.Tokenize(p, ref compilerSettings);
                     File.WriteAllBytes(args[1], bytes);
                 }
             }

@@ -9,7 +9,6 @@ namespace SixBASIC
     public class BASIC
     {
         public Detokenizer DeTokenizer { get; set; }
-        public Tokenizer Tokenizer { get; set; }
         public List<BASIC_Line> Program { get; set; }
         public int LoadAddress { get; set; }
         private int Linebase = 0x00;
@@ -19,7 +18,6 @@ namespace SixBASIC
         public BASIC()
         {
             DeTokenizer = new Detokenizer();
-            Tokenizer = new Tokenizer();
         }
 
         public bool Load(string filename)
