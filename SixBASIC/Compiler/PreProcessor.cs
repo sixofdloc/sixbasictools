@@ -78,14 +78,16 @@ namespace SixBASIC
 						else
 						{
 							//UNDEFINED LABEL ERROR!
-							Console.WriteLine("Undefined Label Error!");
+							Console.WriteLine("Undefined Label: "+labelString+ "in "+line.Text);
 							result = false;
+							break;
 						}
 					}
 				}
 			}
 			catch (Exception ex)
 			{
+                Console.WriteLine(ex);
 				result = false;
 			}
             basicProgram.Dump("pass3.txt");
@@ -151,10 +153,10 @@ namespace SixBASIC
 					Console.WriteLine("buildLine: " + buildLine.Text);
 					Console.WriteLine("currentLine: " + currentLine.Text);
 				}
-                if (!buildLine.CanBeAppendedTo()) canConcatenate = false;
-                if (basicProgram.DoAnyLinesReferTo(line)) canConcatenate = false;
-                if (currentLine.Labels.Count > 0) canConcatenate = false;
-                if (currentLine.Text.Length + buildLine.Text.Length > 250) canConcatenate = false;
+                canConcatenate &= buildLine.CanBeAppendedTo();
+                canConcatenate &= !basicProgram.DoAnyLinesReferTo(line);
+                canConcatenate &= currentLine.Labels.Count <= 0;
+                canConcatenate &= currentLine.Text.Length + buildLine.Text.Length <= 250;
                 if (canConcatenate)
                 {
                     buildLine.Text += ":" + currentLine.Text.Trim().Replace("\t", "");
@@ -204,8 +206,8 @@ namespace SixBASIC
 			//Strip out comments
 			prgLines.ForEach(line => {
 				var lineText = line.LineText;
-                if (lineText.Length > 0 && lineText.Contains("'")) lineText = Utils.RemoveSingleQuoteComments(lineText);
-                if (lineText.Length > 0) passLines.Add(new ProcessedLine(line.SourceFileLine, lineText));
+                if (lineText.Trim().Length > 0 && lineText.Contains("'")) lineText = Utils.RemoveSingleQuoteComments(lineText.Trim());
+                if (lineText.Trim().Length > 0) passLines.Add(new ProcessedLine(line.SourceFileLine, lineText.Trim()));
 			});
 			Dump("Debug-AfterStripComments.txt", passLines);
 			return passLines;

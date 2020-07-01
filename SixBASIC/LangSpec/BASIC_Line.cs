@@ -80,31 +80,31 @@ namespace SixBASIC
 
 
 
-		public  List<byte> Tokenize()
-        {
-            //Needs to encode line number and trailing zero after tokenized basic
-            List<byte> output = new List<byte>();
-            //int linenum = GetLineNumber(line); Already done by preproccesor
-            bool first = true;
-            output.Add((byte)(Line_Number & 0x00ff));
-            output.Add((byte)((Line_Number & 0xff00) >> 8)); //placeholder bytes for next line number
-            //line = StripLineNumber(line);
+		//public  List<byte> Tokenize()
+        //{
+        //    //Needs to encode line number and trailing zero after tokenized basic
+        //    List<byte> output = new List<byte>();
+        //    //int linenum = GetLineNumber(line); Already done by preproccesor
+        //    bool first = true;
+        //    output.Add((byte)(Line_Number & 0x00ff));
+        //    output.Add((byte)((Line_Number & 0xff00) >> 8)); //placeholder bytes for next line number
+        //    //line = StripLineNumber(line);
 
-            List<String> segments = Utils.SplitLine(Text);
-            foreach (string segment in segments)
-            {
-                if (!first) output.Add(0x3A);
-                List<byte> bytes = Tokenizer.TokenizeBlock(segment);
-                foreach (byte b in bytes)
-                {
-                    output.Add(b);
-                }
-                first = false;
-            }
+        //    List<String> segments = Utils.SplitLine(Text);
+        //    foreach (string segment in segments)
+        //    {
+        //        if (!first) output.Add(0x3A);
+        //        List<byte> bytes = Tokenizer.TokenizeBlock(segment);
+        //        foreach (byte b in bytes)
+        //        {
+        //            output.Add(b);
+        //        }
+        //        first = false;
+        //    }
 
-            output.Add(0x00);
-            return output;
-        }
+        //    output.Add(0x00);
+        //    return output;
+        //}
 
 		public bool ContainsBranch(){
 			//returns true if this line contains any branching logic

@@ -164,14 +164,13 @@ namespace SixBASIC
             {
                 if (!inquotes)
                 {
-					if (s[i] == '\'')
+					if (s[i] != '\'')
 					{
-						break;
-					} else {
-						t = t + s[i];
+                        t = t + s[i];
                         if (s[i] == 0x22) inquotes = !inquotes;
-					}
-
+					} else {
+                        break;
+                    }
                 }
                 else
                 {

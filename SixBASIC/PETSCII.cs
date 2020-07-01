@@ -7,6 +7,32 @@ namespace SixBASIC
 {
     public static class PETSCII
     {
+
+        public const byte CHAR_COLON = 0x3a;
+        public const byte CHAR_QUOTE = 0x22;
+
+
+        public static char FixCase(char c)
+        {
+            //Fix case
+            if (c >= 'a' && c <= 'z')
+            {
+                return c.ToString().ToUpper()[0];
+            }
+            else
+            {
+                if (c >= 'A' && c <= 'Z')
+                {
+                    return c.ToString().ToLower()[0];
+                }
+                else
+                {
+                    return c;
+                }
+
+            }
+
+        }
         public class Macro
         {
             public string Text { get; set; }
