@@ -133,7 +133,7 @@ namespace SixBASIC
                             bytes.Add(token.Token);
                             var lineReference = new LineReference(CurrentLine.Tokenized.Count+bytes.Count, "");
                             //Turn line number reference into 2-byte token and tell the parser about it.
-                            while (Utils.IsNumber(currentTextString.Substring(0, 1)))
+                            while (currentTextString.Length > 0 && Utils.IsNumber(currentTextString.Substring(0, 1)))
                             {
                                 lineReference.LineNumberOrLabel += currentTextString.Substring(0, 1);
                                 currentTextString = currentTextString.Substring(1, currentTextString.Length - 1);

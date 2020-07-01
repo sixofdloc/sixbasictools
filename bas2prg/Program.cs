@@ -29,7 +29,7 @@ namespace bas2prg
                     List<string> basfile = File.ReadAllLines(args[0]).ToList();
 					CompilerSettings compilerSettings = new CompilerSettings();
                     BASICProgram p = pp.PreProcess(basfile,ref compilerSettings);
-                    byte[] bytes = SixBASICTokenizer.Tokenize(p, ref compilerSettings);
+                    byte[] bytes = Tokenizer.Tokenize(p, ref compilerSettings);
 //                    byte[] bytes = Tokenizer.Tokenize(p, ref compilerSettings);
                     File.WriteAllBytes(args[1], bytes);
                 }
