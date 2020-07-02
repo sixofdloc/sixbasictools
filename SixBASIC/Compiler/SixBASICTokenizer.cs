@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 using SixBASIC.LangSpec;
 
 namespace SixBASIC
@@ -35,9 +37,14 @@ namespace SixBASIC
             Output.Add((byte)((NextLineAddress & 0xff00) >> 8));
 
             //Process every line in the file to an optimizedBASIC Line.
-            foreach (BASIC_Line line in program.Lines)
+            foreach (var line in program.Lines)
             {
-                CurrentLine = new OptimizedBASICLine() { OriginalLine = line, BaseAddress = ThisLineAddress, LineNumber = line.Line_Number };
+                CurrentLine = new OptimizedBASICLine()
+                {
+                    OriginalLine = line,
+                    BaseAddress = ThisLineAddress,
+                    LineNumber = line.Line_Number
+                };
                 //Get tokenized bytes for this line
                 var tokenizedLineBytes = TokenizeLine(line);
                 CurrentLine.Tokenized = tokenizedLineBytes;
@@ -51,10 +58,11 @@ namespace SixBASIC
                 Output.AddRange(tokenizedLineBytes);
 
                 Lines.Add(CurrentLine);
-
                 ThisLineAddress = NextLineAddress;
             }
 
+            var serializedLines = JsonConvert.SerializeObject(Lines);
+            File.WriteAllText("test.json", serializedLines);
             //Pad end with zeroes
             Output.Add(0x00);
             Output.Add(0x00);
@@ -65,9 +73,9 @@ namespace SixBASIC
         private static List<byte> TokenizeLine(BASIC_Line line)
         {
             //Needs to encode line number and trailing zero after tokenized basic
-            List<byte> tokenizedLineBytes = new List<byte>();
+            var tokenizedLineBytes = new List<byte>();
             //int linenum = GetLineNumber(line); Already done by preproccesor
-            bool first = true;
+            var first = true;
 
             //TODO: Get rid of line numbers entirely for our optimized BASIC
 
@@ -77,12 +85,12 @@ namespace SixBASIC
             //line = StripLineNumber(line);
 
             //Splits the line on any : characters it finds
-            List<String> lineSegments = Utils.SplitLine(line.Text);
+            var lineSegments = Utils.SplitLine(line.Text);
 
-            foreach (string lineSegment in lineSegments)
+            foreach (var lineSegment in lineSegments)
             {
                 if (!first) tokenizedLineBytes.Add(PETSCII.CHAR_COLON);
-                List<byte> tokenizedSegmentBytes = TokenizeBlock(lineSegment);
+                var tokenizedSegmentBytes = TokenizeBlock(lineSegment);
                 tokenizedLineBytes.AddRange(tokenizedSegmentBytes);
                 first = false;
             }
@@ -113,10 +121,12 @@ namespace SixBASIC
                 var keywordFound = false;
                 if (!quotemode)
                 {
-                    var token = MicrosoftBasic2.Tokens.FirstOrDefault(p => currentTextString.ToUpper().StartsWith(p.ASCII));
+                    //Is this a token?
+                    var token = MicrosoftBasic2.Tokens.FirstOrDefault(p => currentTextString.ToUpper().StartsWith(p.ASCII, StringComparison.CurrentCulture));
                     if (token != null)
                     {
                         bytes.Add(token.Token);
+                        keywordFound = true;
                         if (currentTextString.Length > token.ASCII.Length)
                         {
                             //Slice the keyword out of t
@@ -130,7 +140,7 @@ namespace SixBASIC
                         //Is this a branching keyword
                         if (MicrosoftBasic2.BranchingKeywords.Contains(token.ASCII))
                         {
-                            bytes.Add(token.Token);
+//                            bytes.Add(token.Token);
                             var lineReference = new LineReference(CurrentLine.Tokenized.Count+bytes.Count, "");
                             //Turn line number reference into 2-byte token and tell the parser about it.
                             while (currentTextString.Length > 0 && Utils.IsNumber(currentTextString.Substring(0, 1)))
@@ -140,13 +150,12 @@ namespace SixBASIC
                             }
                             CurrentLine.OtherLineRefs.Add(lineReference);
                             //Add temporary placeholder
-                            bytes.Add(0xff);
-                            bytes.Add(0xff);
+                            bytes.Add(0x69);
+                            bytes.Add(0x69);
                         }
                         else
                         {
                             //Add normal non-branching token
-                            keywordFound = true;
                             break;
                         }
                     }

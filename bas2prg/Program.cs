@@ -24,13 +24,12 @@ namespace bas2prg
                 }
                 else
                 {
-                    BASIC basic = new BASIC();
-                    PreProcessor pp = new PreProcessor();
-                    List<string> basfile = File.ReadAllLines(args[0]).ToList();
-					CompilerSettings compilerSettings = new CompilerSettings();
-                    BASICProgram p = pp.PreProcess(basfile,ref compilerSettings);
-                    byte[] bytes = Tokenizer.Tokenize(p, ref compilerSettings);
-//                    byte[] bytes = Tokenizer.Tokenize(p, ref compilerSettings);
+                    //var basic = new BASIC();
+                    var pp = new PreProcessor();
+                    var basfile = File.ReadAllLines(args[0]).ToList();
+					var compilerSettings = new CompilerSettings();
+                    var p = pp.PreProcess(basfile,ref compilerSettings);
+                    var bytes = (true) ? SixBASICTokenizer.Tokenize(p, ref compilerSettings) : Tokenizer.Tokenize(p, ref compilerSettings);
                     File.WriteAllBytes(args[1], bytes);
                 }
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SixBASIC
 {
-    public static class PointerBasicTokenizer
+    public static class Tokenizer
     {
         public static byte[] Tokenize(BASICProgram program, ref CompilerSettings compilerSettings)
         {
@@ -60,13 +60,10 @@ namespace SixBASIC
         public static List<byte> TokenizeBlock(string s)
         {
             var bytes = new List<byte>();
-
             var t = s.Replace("\0", "");
-
             t = t.TrimStart(new char[]{' ',':'});
             var done = false;
             var quotemode = false;
-
             while (!done)
             {
                 var found = false;

@@ -61,6 +61,9 @@
     <Reference Include="System.Xml.Linq">
       <HintPath>..\..\..\..\..\..\usr\lib\mono\4.6-api\System.Xml.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PETSCII.cs" />
@@ -91,12 +94,16 @@
     <Compile Include="Compiler\CompilerElements\CompilerElement.cs" />
     <Compile Include="Compiler\SixBASICTokenizer.cs" />
     <Compile Include="LangSpec\OptimizedBASICLine.cs" />
+    <Compile Include="Compiler\Tokenizer %28copy%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="LangSpec\" />
     <Folder Include="Compiler\" />
     <Folder Include="Compiler\CompilerElements\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
