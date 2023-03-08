@@ -1,3 +1,0 @@
-/home/six/Desktop/GIT/Mine/sixbasictools/sixbasic/bin/Release/net7.0/linux-x64/publish/sixbasic.pdb
-/home/six/Desktop/GIT/Mine/sixbasictools/sixbasic/bin/Release/net7.0/linux-x64/publish/sixbasiclib.pdb
-/home/six/Desktop/GIT/Mine/sixbasictools/sixbasic/bin/Release/net7.0/linux-x64/publish/sixbasic
