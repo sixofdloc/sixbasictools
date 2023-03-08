@@ -1,0 +1,10 @@
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/bin/Release/net7.0/sixbasiclib.deps.json
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/bin/Release/net7.0/sixbasiclib.dll
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/bin/Release/net7.0/sixbasiclib.pdb
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/sixbasiclib.csproj.AssemblyReference.cache
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/sixbasiclib.GeneratedMSBuildEditorConfig.editorconfig
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/sixbasiclib.csproj.CoreCompileInputs.cache
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/sixbasiclib.dll
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/refint/sixbasiclib.dll
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/sixbasiclib.pdb
+/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/obj/Release/net7.0/ref/sixbasiclib.dll

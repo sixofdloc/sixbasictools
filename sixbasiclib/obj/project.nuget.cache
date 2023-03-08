@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "/aTmtYEs43/WpdIhb5DWYT3BEQuMvhtg6CDlpYp1Lt5U1tArenU9YfMJDJooyqShzSD0pk3V3P+jZj26gWZL6A==",
+  "success": true,
+  "projectFilePath": "/home/six/Desktop/GIT/Mine/sixbasictools/sixbasiclib/sixbasiclib.csproj",
+  "expectedPackageFiles": [
+    "/home/six/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512",
+    "/home/six/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/7.0.3/microsoft.netcore.app.runtime.linux-x64.7.0.3.nupkg.sha512",
+    "/home/six/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/7.0.3/microsoft.aspnetcore.app.runtime.linux-x64.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

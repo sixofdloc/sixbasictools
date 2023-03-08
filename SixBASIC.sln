@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sixbasiclib", "sixbasiclib\sixbasiclib.csproj", "{5A7E0A76-B3BE-40E7-901D-7F3C88A41AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sixbasic", "sixbasic\sixbasic.csproj", "{518976C8-FB5C-4FE1-A94A-634042DA1C84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A7E0A76-B3BE-40E7-901D-7F3C88A41AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7E0A76-B3BE-40E7-901D-7F3C88A41AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7E0A76-B3BE-40E7-901D-7F3C88A41AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7E0A76-B3BE-40E7-901D-7F3C88A41AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{518976C8-FB5C-4FE1-A94A-634042DA1C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{518976C8-FB5C-4FE1-A94A-634042DA1C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{518976C8-FB5C-4FE1-A94A-634042DA1C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{518976C8-FB5C-4FE1-A94A-634042DA1C84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
