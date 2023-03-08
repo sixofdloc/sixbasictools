@@ -7,7 +7,7 @@ var app = new CommandLineApplication();
 app.HelpOption("-?|-h|--help");
 app.VersionOption("-v|--version", "1.0.0");
 app.Description = "A command-line tool for listing, tokenizing, and detokenizing BASIC files.";
-app.Name = "SixBasic";
+app.Name = "sixbasic";
 app.ShortVersionGetter = () => "1.0.0";
 
 app.Command("list", cmd =>
